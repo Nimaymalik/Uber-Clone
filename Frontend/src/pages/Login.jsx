@@ -1,26 +1,42 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserDataContext } from "../Context/Context";
+import axios from "axios";
 
 const Login = () => {
   //we use usestate as a 2 way binding method
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
+
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserDataContext);
 
   //handler is used to handle the entries in the form which is entered by the user
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
+    //prevent automatic/default reload
     e.preventDefault();
-    // when click on login this will clear the form and return the value in the console
-    setEmail("");
-    setPassword("");
 
     //this is used to keep the data in the stored in tyhe form of object
-    setUserData({
+    const newUser = {
       email: email,
       password: password,
-    });
-    console.log(userData);
-    console.log(email, password);
+    };
+
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}users/login`,
+      newUser
+    );
+
+    if (response.status === 200) {
+      const data = response.data;
+      setUser(data.user);
+      navigate("/home");
+    }
+    // when click on login this will clear the form and return the value in the console
+    // setEmail("");
+    // setPassword("");
+    console.log(newUser);
   };
 
   return (
