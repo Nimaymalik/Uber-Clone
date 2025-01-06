@@ -67,7 +67,7 @@ const Login = () => {
         <p className="text-center">
           New Here?
           <Link to={"/Signup"} className="mb-3 text-blue-600">
-            Create nw Account
+            Create new Account
           </Link>
         </p>
       </div>
@@ -76,7 +76,7 @@ const Login = () => {
           to={"/captain-login"}
           className="flex items-center justify-center bg-[#10b461] text-white font-semibold mb-5 rounded px-2 py-2  w-full text-lg placeholder:text-base"
         >
-          Create account as Captain
+          Login as Captain
         </Link>
       </div>
     </div>
