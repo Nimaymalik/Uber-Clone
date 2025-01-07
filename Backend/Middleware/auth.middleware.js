@@ -2,7 +2,6 @@
 
 const userModel = require("../Models/user.model");
 const bcrypt = require("bcrypt");
-const { request } = require("express");
 const captainModel = require("../Models/captain.model");
 const blackListTokenModel = require("../Models/blacklistToken.model");
 
